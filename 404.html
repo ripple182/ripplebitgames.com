@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found</title>
+  <meta name="robots" content="noindex">
+  <script>
+    // GitHub Pages paths are case-sensitive and Windows can't hold both
+    // DoodleWizards/ and doodlewizards/, so fix the case here instead.
+    if (/^\/doodlewizards(\/|$)/i.test(location.pathname)) {
+      location.replace("/DoodleWizards/" + location.search + location.hash);
+    }
+  </script>
+  <link rel="icon" type="image/png" href="/assets/favicon.png">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <main>
+    <h1>This page got erased.</h1>
+    <p>Nothing is drawn here yet.</p>
+    <a class="card" href="/DoodleWizards/">
+      <img src="/assets/avatar.jpg" width="96" height="96" alt="">
+      <span>
+        <strong>Doodle Wizards</strong>
+        Go to the game page.
+      </span>
+    </a>
+  </main>
+</body>
+</html>
