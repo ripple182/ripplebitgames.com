@@ -9,7 +9,7 @@
     // GitHub Pages paths are case-sensitive and Windows can't hold both
     // DoodleWizards/ and doodlewizards/, so fix the case here instead.
     if (/^\/doodlewizards(\/|$)/i.test(location.pathname)) {
-      location.replace("/DoodleWizards/" + location.search + location.hash);
+      location.replace(location.pathname.replace(/^\/doodlewizards/i, "/DoodleWizards") + location.search + location.hash);
     }
   </script>
   <link rel="icon" type="image/png" href="/assets/favicon.png">
