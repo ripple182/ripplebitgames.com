@@ -186,6 +186,8 @@ blockquote {
   border-left: 4px solid var(--purple);
 }
 blockquote p { margin: 0; }
+blockquote footer { font-size: 1rem; color: var(--ink-soft); }
+blockquote footer::before { content: "\2014\00a0"; }
 
 .gallery {
   display: grid;
