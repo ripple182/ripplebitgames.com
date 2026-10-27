@@ -59,6 +59,7 @@ a:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-ra
   background: var(--yellow);
   border: 2px solid var(--ink);
   border-radius: 8px 12px 7px 10px;
+  border-style: dashed;
   padding: 2px 12px;
   margin: 8px 0 32px;
   transform: rotate(1deg);
@@ -85,6 +86,7 @@ a:focus-visible { outline: 3px solid var(--pink); outline-offset: 3px; border-ra
   box-shadow: 3px 3px 0 var(--ink);
   transition: transform .08s ease, box-shadow .08s ease;
 }
+.links a:focus-visible { box-shadow: 4px 5px 0 var(--pink); }
 .links a:hover { transform: translate(-1px, -2px) rotate(-1deg); box-shadow: 4px 5px 0 var(--pink); }
 .links a:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
 
@@ -129,37 +131,49 @@ footer { color: var(--ink-soft); font-size: 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .links a, .banner, .badge { transition: none; transform: none; }
+  .links a, .banner, .badge, .button, .gallery img { transition: none; transform: none; }
 }
 
 /* press kit */
+.crumbs { font-size: 1rem; color: var(--ink-soft); margin: 0 0 32px; }
+.crumbs a { display: inline-block; padding: 0 2px; }
+
 .button {
   display: inline-block;
   text-decoration: none;
+  font-size: 1.5rem;
   color: var(--ink);
   background: var(--yellow);
   border: 2px solid var(--ink);
   border-radius: 12px 8px 14px 9px;
-  padding: 6px 16px;
+  padding: 6px 24px;
   box-shadow: 3px 3px 0 var(--ink);
-  margin: 0 0 8px;
+  transition: transform .08s ease, box-shadow .08s ease;
 }
-.button:hover { box-shadow: 4px 5px 0 var(--pink); }
+.button:hover, .button:focus-visible { transform: translate(-1px, -2px) rotate(-1deg); box-shadow: 4px 5px 0 var(--pink); }
+.button:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--ink); }
 .small { font-size: 1rem; color: var(--ink-soft); }
+.button + .small { display: block; margin-top: 8px; }
+h2 + .small { margin: -8px 0 16px; }
 
 .facts {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   background: #fff;
   border: 2px solid var(--ink);
+  border-radius: 12px 8px 14px 9px;
+  box-shadow: 3px 3px 0 var(--ink);
   margin: 0 0 32px;
 }
 .facts th, .facts td {
   text-align: left;
   vertical-align: top;
-  padding: 4px 12px;
+  padding: 0 12px;
+  line-height: 31px;
   border-bottom: 1px solid var(--line);
 }
+.facts tr:last-child th, .facts tr:last-child td { border-bottom: 0; }
 .facts td { overflow-wrap: break-word; }
 .facts th { font-weight: 400; color: var(--ink-soft); white-space: nowrap; width: 1%; }
 
@@ -175,18 +189,33 @@ blockquote p { margin: 0; }
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin: 0 0 32px;
 }
+.gallery.art { grid-template-columns: repeat(3, 1fr); }
 .gallery a, .gallery figure { display: block; margin: 0; }
 .gallery img, .gallery video {
   display: block;
   width: 100%;
   height: auto;
   border: 2px solid var(--ink);
-  border-radius: 6px;
+  border-radius: 10px 14px 9px 12px;
+  box-shadow: 3px 4px 0 var(--ink);
   background: #fff;
+  transition: transform .08s ease, box-shadow .08s ease;
 }
-.gallery figcaption { font-size: 1rem; line-height: 1.3; color: var(--ink-soft); margin-top: 4px; }
-.gallery .logo img { background: #fff; padding: 8px; }
+.gallery video { aspect-ratio: 16 / 9; background: var(--ink); }
+.gallery a:hover img, .gallery a:focus-visible img { transform: translate(-1px, -2px); box-shadow: 4px 5px 0 var(--pink); }
+.gallery a:focus-visible { outline-offset: 5px; }
+.gallery figcaption { font-size: 1rem; line-height: 1.3; color: var(--ink-soft); margin-top: 6px; }
+.gallery .logo img { padding: 8px; }
+
+@media (max-width: 520px) {
+  .gallery { gap: 12px; }
+  .gallery.art { grid-template-columns: repeat(2, 1fr); }
+  .gallery.art .logo { grid-column: 1 / -1; }
+  .button { font-size: 1.25rem; padding: 4px 16px; }
+  .facts th, .facts td { display: block; width: auto; }
+  .facts th { border-bottom: 0; line-height: 24px; padding-top: 4px; }
+}
