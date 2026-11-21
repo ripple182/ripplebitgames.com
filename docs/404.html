@@ -8,9 +8,23 @@
   <script>
     // GitHub Pages paths are case-sensitive and Windows can't hold both
     // DoodleWizards/ and doodlewizards/, so fix the case here instead.
-    if (/^\/doodlewizards(\/|$)/i.test(location.pathname)) {
-      location.replace(location.pathname.replace(/^\/doodlewizards/i, "/DoodleWizards") + location.search + location.hash);
-    }
+    // Also fix the case of the press and language folders (zh_cn -> zh_CN),
+    // and only redirect when something changed, so a missing page can't loop.
+    (function () {
+      var p = location.pathname;
+      if (!/^\/doodlewizards(\/|$)/i.test(p)) return;
+      var dirs = { "press": "press", "zh_cn": "zh_CN", "zh-cn": "zh_CN", "zh-hans": "zh_CN",
+        "zh_tw": "zh_TW", "zh-tw": "zh_TW", "zh-hant": "zh_TW", "pt_br": "pt_BR", "pt-br": "pt_BR",
+        "ru": "ru", "es": "es", "de": "de", "fr": "fr", "tr": "tr", "pl": "pl", "ko": "ko", "ja": "ja", "it": "it" };
+      var parts = p.split("/");
+      parts[1] = "DoodleWizards";
+      for (var i = 2; i < parts.length && i < 4; i++) {
+        var k = parts[i].toLowerCase();
+        if (dirs.hasOwnProperty(k)) parts[i] = dirs[k];
+      }
+      var fixed = parts.join("/");
+      if (fixed !== p) location.replace(fixed + location.search + location.hash);
+    })();
   </script>
   <link rel="icon" type="image/png" href="/assets/favicon.png">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap">
