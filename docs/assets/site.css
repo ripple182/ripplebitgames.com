@@ -221,3 +221,31 @@ blockquote footer::before { content: "\2014\00a0"; }
   .facts th, .facts td { display: block; width: auto; }
   .facts th { border-bottom: 0; line-height: 24px; padding-top: 4px; }
 }
+
+/* language switcher */
+.langs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 14px;
+  font-size: 1rem;
+  line-height: 32px;
+  margin: -24px 0 32px;
+}
+.langs a { white-space: nowrap; }
+.langs a[aria-current="page"] {
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--yellow);
+  border: 1px solid var(--ink);
+  border-radius: 6px 8px 5px 7px;
+  padding: 0 6px;
+  line-height: 24px;
+}
+
+/* Patrick Hand has no Cyrillic or CJK glyphs: each translated page loads one
+   extra Google font and falls back to it glyph by glyph. */
+body:lang(ru) { font-family: "Patrick Hand", "Pangolin", "Comic Sans MS", system-ui, sans-serif; }
+body:lang(zh-Hans) { font-family: "Patrick Hand", "Noto Sans SC", system-ui, sans-serif; }
+body:lang(zh-Hant) { font-family: "Patrick Hand", "Noto Sans TC", system-ui, sans-serif; }
+body:lang(ja) { font-family: "Patrick Hand", "Noto Sans JP", system-ui, sans-serif; }
+body:lang(ko) { font-family: "Patrick Hand", "Noto Sans KR", system-ui, sans-serif; word-break: keep-all; }
